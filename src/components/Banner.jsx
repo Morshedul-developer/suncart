@@ -1,11 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "animate.css";
 
 const banners = [
   {
@@ -32,6 +34,8 @@ const banners = [
 ];
 
 export default function BannerSlider() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
     <section className="w-full">
       <Swiper
@@ -40,33 +44,40 @@ export default function BannerSlider() {
         pagination={{ clickable: true }}
         navigation
         loop
-        className="h-75 md:h-125"
+        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+        className="w-full"
       >
-        {banners.map((banner) => (
+        {banners.map((banner, index) => (
           <SwiperSlide key={banner.id}>
             <div
-              className="h-full w-full bg-cover bg-center flex items-center"
+              className="w-full bg-cover bg-center flex items-center
+              h-[250px] sm:h-[300px] md:h-[450px] lg:h-[550px]"
               style={{ backgroundImage: `url(${banner.image})` }}
             >
-              {/* Overlay */}
               <div className="w-full h-full bg-black/50 flex items-center">
                 <div className="max-w-7xl mx-auto px-6 text-white">
-                  
-                  <p className="text-[#FBBF24] font-semibold mb-2">
-                    Exclusive Offer
-                  </p>
 
-                  <h1 className="text-3xl md:text-6xl font-bold max-w-2xl">
-                    {banner.title}
-                  </h1>
+                  {/* 🔥 KEY FIX: key changes every slide */}
+                  {activeIndex === index && (
+                    <>
+                      <p className="text-[#FBBF24] font-semibold mb-2 animate__animated animate__fadeInDown">
+                        Exclusive Offer
+                      </p>
 
-                  <p className="mt-4 text-gray-200 text-lg md:text-xl max-w-xl">
-                    {banner.subtitle}
-                  </p>
+                      <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold max-w-2xl animate__animated animate__fadeInLeft">
+                        {banner.title}
+                      </h1>
 
-                  <button className="mt-6 bg-[#FBBF24] text-[#6C4F00] px-6 py-3 rounded-xl font-semibold hover:scale-105 transition">
-                    Shop Now
-                  </button>
+                      <p className="mt-4 text-gray-200 text-sm sm:text-base md:text-lg max-w-xl animate__animated animate__fadeInUp">
+                        {banner.subtitle}
+                      </p>
+
+                      <button className="mt-6 bg-[#FBBF24] text-[#6C4F00] px-5 py-2 md:px-6 md:py-3 rounded-xl font-semibold hover:scale-105 transition cursor-pointer">
+                        Shop Now
+                      </button>
+                    </>
+                  )}
+
                 </div>
               </div>
             </div>
