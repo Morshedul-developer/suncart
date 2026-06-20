@@ -51,7 +51,7 @@ export default function BannerSlider() {
           <SwiperSlide key={banner.id}>
             <div
               className="w-full bg-cover bg-center flex items-center
-              h-[250px] sm:h-[300px] md:h-[450px] lg:h-[550px]"
+              h-62.5 sm:h-75 md:h-112.5 lg:h-137.5"
               style={{ backgroundImage: `url(${banner.image})` }}
             >
               <div className="w-full h-full bg-black/50 flex items-center">
