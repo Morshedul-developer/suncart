@@ -16,10 +16,10 @@ const Footer = () => {
 
           {/* Brand */}
           <div>
-            <h2 className="text-2xl font-bold text-[#6C4F00]">
+            <h2 className="text-3xl font-bold text-[#6C4F00] ">
               SunCart
             </h2>
-            <p className="text-gray-600 mt-3">
+            <p className="text-gray-600 mt-3 leading-7">
               Your trusted online shopping destination.
               Best deals, best products, best experience.
             </p>
@@ -31,8 +31,8 @@ const Footer = () => {
               Contact Info
             </h3>
 
-            <p className="text-gray-600">📍 Bogra, Bangladesh</p>
-            <p className="text-gray-600">📞 +880 1XXXXXXXXX</p>
+            <p className="text-gray-600 mb-2">📍 Dinajpur, Bangladesh</p>
+            <p className="text-gray-600 mb-2">📞 +880 1XXXXXXXXX</p>
             <p className="text-gray-600">✉ support@suncart.com</p>
           </div>
 

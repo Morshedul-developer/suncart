@@ -8,6 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "animate.css";
+import { Chip } from "@heroui/react";
 
 const banners = [
   {
@@ -15,25 +16,25 @@ const banners = [
     title: "Summer Sale 2026",
     subtitle: "Up to 50% Off on Fashion & Electronics",
     image:
-      "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=1600",
+      "https://res.cloudinary.com/dsgnat4bt/image/upload/q_auto/f_auto/v1781959893/photo-1607082348824-0a96f2a4b9da_xjuwgi.jpg",
   },
   {
     id: 2,
     title: "New Arrivals",
     subtitle: "Latest trending products just for you",
     image:
-      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1600",
+      "https://res.cloudinary.com/dsgnat4bt/image/upload/q_auto/f_auto/v1781959982/photo-1441986300917-64674bd600d8_je6onz.jpg",
   },
   {
     id: 3,
     title: "Best Deals",
     subtitle: "Shop smart & save more every day",
     image:
-      "https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1600",
+      "https://res.cloudinary.com/dsgnat4bt/image/upload/q_auto/f_auto/v1781960007/photo-1556740749-887f6717d7e4_dqkaqj.jpg",
   },
 ];
 
-export default function BannerSlider() {
+export default function Banner() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -45,7 +46,7 @@ export default function BannerSlider() {
         navigation
         loop
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-        className="w-full"
+        className="w-full my-10 rounded-lg"
       >
         {banners.map((banner, index) => (
           <SwiperSlide key={banner.id}>
@@ -56,13 +57,11 @@ export default function BannerSlider() {
             >
               <div className="w-full h-full bg-black/50 flex items-center">
                 <div className="max-w-7xl mx-auto px-6 text-white">
-
-                  {/* 🔥 KEY FIX: key changes every slide */}
                   {activeIndex === index && (
                     <>
-                      <p className="text-[#FBBF24] font-semibold mb-2 animate__animated animate__fadeInDown">
+                      <Chip color="warning" variant="primary" className="font-semibold mb-2 animate__animated animate__fadeInDown">
                         Exclusive Offer
-                      </p>
+                      </Chip>
 
                       <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold max-w-2xl animate__animated animate__fadeInLeft">
                         {banner.title}
@@ -77,7 +76,6 @@ export default function BannerSlider() {
                       </button>
                     </>
                   )}
-
                 </div>
               </div>
             </div>
