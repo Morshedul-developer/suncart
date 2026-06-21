@@ -67,7 +67,7 @@ export default function ProductCard({ product }) {
             </span>
           </div>
 
-          <button className="rounded-full bg-black px-5 py-2 text-sm font-medium text-white transition hover:bg-zinc-800">
+          <button className="rounded-full bg-black px-5 py-2 text-sm font-medium text-white transition hover:bg-zinc-800 cursor-pointer">
             View Details
           </button>
         </div>
