@@ -38,7 +38,7 @@ export default function Banner() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="w-full px-4 md:px-0">
+    <section className="w-full px-4 md:px-0 mb-10">
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
@@ -46,13 +46,13 @@ export default function Banner() {
         navigation
         loop
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-        className="w-full my-10 rounded-lg"
+        className="w-full"
       >
         {banners.map((banner, index) => (
           <SwiperSlide key={banner.id}>
             <div
               className="w-full bg-cover bg-center flex items-center
-              h-62.5 sm:h-75 md:h-112.5 lg:h-137.5"
+              h-62.5 sm:h-75 md:h-112.5 lg:h-[91vh]"
               style={{ backgroundImage: `url(${banner.image})` }}
             >
               <div className="w-full h-full bg-black/50 flex items-center">
