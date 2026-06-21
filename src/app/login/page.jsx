@@ -31,7 +31,7 @@ export default function LoginPage() {
 
           {/* Brand Bar */}
           <div
-            className="text-center py-5 px-6 animate__animated animate__fadeInDown rounded-[18px] rounded-b-none"
+            className="text-center py-5 px-6 animate__animated animate__fadeInUp animate__faster rounded-[18px] rounded-b-none"
             style={{
               background: "linear-gradient(90deg, #f5f0e8 0%, #fdf6e3 100%)",
               borderBottom: "1px solid #f0e0b0",
