@@ -66,7 +66,7 @@ const SummerCareTips = () => {
                     {tip.description}
                   </p>
 
-                  <button className="group/readmore mt-5 flex w-fit items-center gap-2 font-bold text-[#006591] transition-colors duration-300 hover:text-[#004b6b]">
+                  <button className="group/readmore mt-5 flex w-fit items-center gap-2 font-bold text-[#006591] transition-colors duration-300 hover:text-[#004b6b] cursor-pointer">
                     <span className="relative">
                       Read More
 
