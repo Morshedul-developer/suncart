@@ -1,37 +1,92 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Input, Link } from "@heroui/react";
-import { FiMail, FiLock, FiEye, FiEyeOff, FiArrowRight } from "react-icons/fi";
+import { Button, Link } from "@heroui/react";
 import { FcGoogle } from "react-icons/fc";
 import { IoHomeOutline } from "react-icons/io5";
+import {
+  Description,
+  FieldError,
+  Form,
+  Input,
+  Label,
+  TextField,
+} from "@heroui/react";
+// import { authClient } from "@/lib/auth-client"; // Better Auth client
+import { useRouter } from "next/navigation";
 import "animate.css";
+import { Check } from "lucide-react";
+import { Icon } from "@iconify/react";
+
+const inputClassNames = {
+  label: "text-[14px] font-semibold text-[#1a1a1a]",
+  inputWrapper: [
+    "border-[1.5px] border-[#F0B429]",
+    "bg-white",
+    "rounded-[10px]",
+    "h-12",
+    "hover:border-[#d4940e]",
+    "focus-within:border-[#d4940e]",
+    "shadow-none",
+  ],
+  input: "text-sm placeholder:text-[#ccc]",
+  errorMessage: "text-red-500 text-xs mt-1",
+};
 
 export default function LoginPage() {
+  const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [serverError, setServerError] = useState("");
 
   const toggleVisibility = () => setIsVisible((prev) => !prev);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // login logic here
+    setServerError("");
+
+    const formData = new FormData(e.currentTarget);
+    const { email, password } = Object.fromEntries(formData);
+    console.log({ email, password });
+
+    setIsLoading(true);
+
+    const { data, error } = await authClient.signIn.email({
+      email,
+      password,
+    });
+
+    setIsLoading(false);
+
+    if (error) {
+      setServerError(error.message || "Invalid email or password.");
+      return;
+    }
+
+    router.push("/dashboard");
+  };
+
+  const handleGoogleLogin = async () => {
+    await authClient.signIn.social({ provider: "google" });
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-10"
+    <div
+      className="min-h-screen flex items-center justify-center px-4 py-10"
       style={{
-        background: "linear-gradient(135deg, #fffbf0 0%, #f0f8ff 60%, #e8f4fd 100%)",
+        background:
+          "linear-gradient(135deg, #fffbf0 0%, #f0f8ff 60%, #e8f4fd 100%)",
       }}
     >
-      {/* Dashed outer border wrapper */}
+      {/* Dashed outer border */}
       <div
-        className="w-full max-w-105 rounded-[18px] animate__animated animate__fadeIn animate__faster border border-[rgba(253,230,138,0.5)]"
+        className="w-full max-w-105 rounded-[18px] animate__animated animate__fadeIn animate__faster"
+        style={{ border: "2px dashed #7ab8d4" }}
       >
-        <div className="bg-white rounded-[18px]">
-
+        <div className="bg-white rounded-[18px] overflow-hidden">
           {/* Brand Bar */}
           <div
-            className="text-center py-5 px-6 animate__animated animate__fadeInUp animate__faster rounded-[18px] rounded-b-none"
+            className="text-center py-5 px-6 animate__animated animate__fadeInDown"
             style={{
               background: "linear-gradient(90deg, #f5f0e8 0%, #fdf6e3 100%)",
               borderBottom: "1px solid #f0e0b0",
@@ -47,126 +102,101 @@ export default function LoginPage() {
 
           {/* Card Body */}
           <div className="px-7 pt-8 pb-6">
-
             {/* Heading */}
             <div className="text-center mb-7 animate__animated animate__fadeInUp animate__faster">
               <h2 className="text-[24px] font-bold text-[#1a1a1a] mb-2">
-                Welcome Back
+                Login
               </h2>
               <p className="text-sm text-[#888]">
                 Soak up the savings. Sign in to your account.
               </p>
             </div>
 
-            {/* Form */}
-            <form onSubmit={handleLogin} className="flex flex-col gap-5 animate__animated animate__fadeInUp animate__delay-1s">
-
-              {/* Email */}
-              <Input
+            {/* HeroUI Form */}
+            <Form className="flex w-96 flex-col gap-4">
+              <TextField
+                isRequired
+                name="email"
                 type="email"
-                label="Email"
-                labelPlacement="outside"
-                placeholder="name@example.com"
-                endContent={
-                  <FiMail className="text-xl text-[#ccc] mt-[2px]" />
-                }
-                classNames={{
-                  label: "text-[14px] font-semibold text-[#1a1a1a]",
-                  inputWrapper: [
-                    "border-[1.5px] border-[#F0B429]",
-                    "bg-white",
-                    "rounded-[10px]",
-                    "h-12",
-                    "hover:border-[#d4940e]",
-                    "focus-within:border-[#d4940e]",
-                    "shadow-none",
-                  ],
-                  input: "text-sm text-[#aaa] placeholder:text-[#ccc]",
+                validate={(value) => {
+                  if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
+                    return "Please enter a valid email address";
+                  }
+                  return null;
                 }}
-              />
-
-              {/* Password */}
-              <Input
-                type={isVisible ? "text" : "password"}
-                label="Password"
-                labelPlacement="outside"
-                placeholder="••••••••"
-                endContent={
-                  <button
-                    type="button"
-                    onClick={toggleVisibility}
-                    className="focus:outline-none"
-                    aria-label="Toggle password visibility"
-                  >
-                    {isVisible ? (
-                      <FiEyeOff className="text-xl text-[#ccc]" />
-                    ) : (
-                      <FiEye className="text-xl text-[#ccc]" />
-                    )}
-                  </button>
-                }
-                startContent={<FiLock className="text-xl text-[#ccc]" />}
-                description={
-                  <div className="flex justify-end -mt-1">
-                    <Link
-                      href="#"
-                      className="text-[13px] font-medium"
-                      style={{ color: "#F0A500" }}
-                    >
-                      Forgot password?
-                    </Link>
-                  </div>
-                }
-                classNames={{
-                  label: "text-[14px] font-semibold text-[#1a1a1a]",
-                  inputWrapper: [
-                    "border-[1.5px] border-[#F0B429]",
-                    "bg-white",
-                    "rounded-[10px]",
-                    "h-12",
-                    "hover:border-[#d4940e]",
-                    "focus-within:border-[#d4940e]",
-                    "shadow-none",
-                  ],
-                  input: "text-sm text-[#333] placeholder:text-[#ccc]",
-                }}
-              />
-
-              {/* Login Button */}
-              <Button
-                type="submit"
-                radius="full"
-                className="w-full h-[50px] text-[16px] font-bold mt-1"
-                style={{
-                  background: "#F5A623",
-                  color: "#3d2000",
-                }}
-                endContent={<FiArrowRight className="text-xl" />}
               >
-                Login
-              </Button>
-            </form>
+                <Label>Email</Label>
+                <Input placeholder="john@example.com" />
+                <FieldError />
+              </TextField>
+              <TextField
+                isRequired
+                minLength={8}
+                name="password"
+                type="password"
+                validate={(value) => {
+                  if (value.length < 8) {
+                    return "Password must be at least 8 characters";
+                  }
+                  if (!/[A-Z]/.test(value)) {
+                    return "Password must contain at least one uppercase letter";
+                  }
+                  if (!/[0-9]/.test(value)) {
+                    return "Password must contain at least one number";
+                  }
+                  return null;
+                }}
+              >
+                <Label>Password</Label>
+                <Input placeholder="Enter your password" />
+                <Description>
+                  Must be at least 8 characters with 1 uppercase and 1 number
+                </Description>
+                <FieldError />
+              </TextField>
+              <div className="flex gap-2">
+                <Button
+  type="submit"
+  className="h-11 px-6 rounded-full font-bold text-[#3d2000] transition-all duration-200"
+  style={{ background: "#F5A623" }}
+  onMouseEnter={(e) => e.currentTarget.style.background = "#e09520"}
+  onMouseLeave={(e) => e.currentTarget.style.background = "#F5A623"}
+>
+  <Check />
+  Login
+</Button>
+
+<Button
+  type="reset"
+  variant="secondary"
+  className="h-11 px-6 rounded-full font-semibold text-[#7A5200] border-[1.5px] border-[#F0B429] bg-white transition-all duration-200 hover:bg-[#fff8ec]"
+>
+  Reset
+</Button>
+              </div>
+            </Form>
 
             {/* OR Divider */}
-            <div className="flex items-center gap-3 my-5 animate__animated animate__fadeIn animate__delay-1s">
+            <div className="flex items-center gap-3 my-5">
               <div className="flex-1 h-px bg-[#e5e5e5]" />
               <span className="text-[13px] text-[#bbb]">OR</span>
               <div className="flex-1 h-px bg-[#e5e5e5]" />
             </div>
 
             {/* Google Button */}
-            <Button
-              variant="bordered"
-              className="w-full h-12 border-[1.5px] border-[#e0e0e0] bg-white rounded-[10px] text-[15px] font-medium text-[#333] animate__animated animate__fadeInUp animate__delay-1s"
-              startContent={<FcGoogle className="text-[22px]" />}
-            >
-              Continue with Google
-            </Button>
+            <Button className="w-full text-[#333] transition-all duration-200 hover:border-[#F0B429] hover:bg-[#fff8ec] rounded-[10px] h-12" variant="outline" type="button" onPress={handleGoogleLogin}>
+                          <Icon icon="devicon:google" />
+                          Sign in with Google
+                        </Button>
 
             {/* Register Link */}
-            <p className="text-center text-sm text-[#888] mt-6 animate__animated animate__fadeIn animate__delay-1s">
+            <p className="text-center text-sm text-[#888] mt-6">
               Don&apos;t have an account?{" "}
-              <Link href="/register" className="font-semibold" style={{ color: "#F0A500" }}>
+              <Link
+                href="/register"
+                className="font-semibold"
+                style={{ color: "#F0A500" }}
+              >
                 Register
               </Link>
             </p>
@@ -174,7 +204,7 @@ export default function LoginPage() {
 
           {/* Return to Home */}
           <div
-            className="flex items-center justify-center gap-2 py-4 text-[13px] text-[#999] animate__animated animate__fadeIn"
+            className="flex items-center justify-center gap-2 py-4 text-[13px] text-[#999]"
             style={{ borderTop: "1px solid #f0f0f0" }}
           >
             <IoHomeOutline className="text-base" />
@@ -182,7 +212,6 @@ export default function LoginPage() {
               Return to Home
             </Link>
           </div>
-
         </div>
       </div>
     </div>
