@@ -38,7 +38,7 @@ export default function Banner() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="w-full">
+    <section className="w-full px-4 md:px-0">
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
