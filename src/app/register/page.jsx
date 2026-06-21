@@ -10,13 +10,13 @@ import {
   Label,
   TextField,
 } from "@heroui/react";
-import { useRouter } from "next/navigation";
 import "animate.css";
 import { Check } from "lucide-react";
 import { Icon } from "@iconify/react";
 import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
-export default function LoginPage() {
+export default function registerPage() {
   const router = useRouter();
 
   const handleRegister = async (e) => {
@@ -35,10 +35,9 @@ export default function LoginPage() {
 
     console.log(data, error);
     if (error) {
-      alert(error.message || "Invalid email or password.");
+      alert(error.message || "Something went wrong...!");
       return;
     }
-
 
     router.push("/");
   };
@@ -176,7 +175,6 @@ export default function LoginPage() {
               className="w-full text-[#333] transition-all duration-200 hover:border-[#F0B429] hover:bg-[#fff8ec] rounded-[10px] h-12"
               variant="outline"
               type="button"
-              
             >
               <Icon icon="devicon:google" />
               Sign in with Google

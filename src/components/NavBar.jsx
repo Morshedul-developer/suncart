@@ -3,6 +3,21 @@
 import { useState } from "react";
 import Link from "next/link";
 
+const links = [
+  {
+    name: "Home",
+    link: "/",
+  },
+  {
+    name: "Products",
+    link: "/products",
+  },
+  {
+    name: "My Profile",
+    link: "/my-profile",
+  },
+];
+
 const NavBar = () => {
   const [open, setOpen] = useState(false);
 
@@ -14,42 +29,20 @@ const NavBar = () => {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex items-center gap-8">
-          <li>
-            <Link
-              href="/"
-              className="relative text-gray-700 hover:text-[#6C4F00] transition duration-200
+          {links.map((link, index) => (
+            <li key={index}>
+              <Link
+                href={link.link}
+                className="relative text-gray-700 hover:text-[#6C4F00] transition duration-200
   after:content-[''] after:absolute after:left-0 after:-bottom-1
   after:h-0.5 after:w-0 after:bg-[#FBBF24]
   after:transition-all after:duration-300
   hover:after:w-full"
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="relative text-gray-700 hover:text-[#6C4F00] transition duration-200
-  after:content-[''] after:absolute after:left-0 after:-bottom-1
-  after:h-0.5 after:w-0 after:bg-[#FBBF24]
-  after:transition-all after:duration-300
-  hover:after:w-full"
-              href="/products"
-            >
-              Products
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="relative text-gray-700 hover:text-[#6C4F00] transition duration-200
-  after:content-[''] after:absolute after:left-0 after:-bottom-1
-  after:h-0.5 after:w-0 after:bg-[#FBBF24]
-  after:transition-all after:duration-300
-  hover:after:w-full"
-              href="/my-profile"
-            >
-              My Profile
-            </Link>
-          </li>
+              >
+                {link.name}
+              </Link>
+            </li>
+          ))}
         </ul>
 
         {/* Auth Buttons (Desktop) */}

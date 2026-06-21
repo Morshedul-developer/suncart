@@ -36,12 +36,12 @@ export default function LoginPage() {
       return;
     }
 
-    router.push("/dashboard");
+    router.push("/products");
   };
 
-  const handleGoogleLogin = async () => {
-    await authClient.signIn.social({ provider: "google" });
-  };
+  // const handleGoogleLogin = async () => {
+  //   await authClient.signIn.social({ provider: "google" });
+  // };
 
   return (
     <div
@@ -162,7 +162,6 @@ export default function LoginPage() {
               className="w-full text-[#333] transition-all duration-200 hover:border-[#F0B429] hover:bg-[#fff8ec] rounded-[10px] h-12"
               variant="outline"
               type="button"
-              onClick={handleGoogleLogin}
             >
               <Icon icon="devicon:google" />
               Sign in with Google
