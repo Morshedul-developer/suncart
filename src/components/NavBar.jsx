@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+import { Avatar, Button } from "@heroui/react";
 
 const links = [
   {
@@ -20,6 +22,12 @@ const links = [
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
+  const userData = authClient.useSession();
+  const user = userData.data?.user;
+
+  const handleLogout= async() => {
+    await authClient.signOut();
+  }
 
   return (
     <nav className="border-b bg-white relative">
@@ -46,21 +54,36 @@ const NavBar = () => {
         </ul>
 
         {/* Auth Buttons (Desktop) */}
-        <div className="hidden md:flex items-center gap-4">
-          <Link
-            href="/login"
-            className="px-4 py-2 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400 transition"
-          >
-            Login
-          </Link>
+        {user ? (
+          <div className="flex gap-2.5 items-center">
+            <Avatar size="sm">
+              <Avatar.Image
+                alt="John Doe"
+                src={user?.image}
+                referrerPolicy="no-referrer"
+                
+              />
+              <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
+            </Avatar>
+            <Button onClick={handleLogout} size="sm" variant="danger">Logout</Button>
+          </div>
+        ) : (
+          <div className="hidden md:flex items-center gap-4">
+            <Link
+              href="/login"
+              className="px-4 py-2 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400 transition"
+            >
+              Login
+            </Link>
 
-          <Link
-            href="/register"
-            className="px-4 py-2 rounded-xl bg-[#FBBF24] text-[#6C4F00] font-medium hover:bg-[#f5b70a] hover:shadow-md transition"
-          >
-            Register
-          </Link>
-        </div>
+            <Link
+              href="/register"
+              className="px-4 py-2 rounded-xl bg-[#FBBF24] text-[#6C4F00] font-medium hover:bg-[#f5b70a] hover:shadow-md transition"
+            >
+              Register
+            </Link>
+          </div>
+        )}
 
         {/* Mobile Button */}
         <button className="md:hidden text-2xl" onClick={() => setOpen(!open)}>
