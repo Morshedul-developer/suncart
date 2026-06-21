@@ -1,3 +1,24 @@
 @import "tailwindcss";
 @import "@heroui/styles";
 
+.slider-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: marquee 10s linear infinite;
+  -webkit-animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 12px));
+    -webkit-transform: translateX(calc(-50% - 12px));
+    -moz-transform: translateX(calc(-50% - 12px));
+    -ms-transform: translateX(calc(-50% - 12px));
+    -o-transform: translateX(calc(-50% - 12px));
+}
+}
