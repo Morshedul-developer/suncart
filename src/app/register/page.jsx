@@ -1,8 +1,6 @@
 "use client";
 
-import { useState } from "react";
 import { Button, Link } from "@heroui/react";
-import { FcGoogle } from "react-icons/fc";
 import { IoHomeOutline } from "react-icons/io5";
 import {
   Description,
@@ -12,63 +10,42 @@ import {
   Label,
   TextField,
 } from "@heroui/react";
-// import { authClient } from "@/lib/auth-client"; // Better Auth client
 import { useRouter } from "next/navigation";
 import "animate.css";
 import { Check } from "lucide-react";
 import { Icon } from "@iconify/react";
-
-const inputClassNames = {
-  label: "text-[14px] font-semibold text-[#1a1a1a]",
-  inputWrapper: [
-    "border-[1.5px] border-[#F0B429]",
-    "bg-white",
-    "rounded-[10px]",
-    "h-12",
-    "hover:border-[#d4940e]",
-    "focus-within:border-[#d4940e]",
-    "shadow-none",
-  ],
-  input: "text-sm placeholder:text-[#ccc]",
-  errorMessage: "text-red-500 text-xs mt-1",
-};
+import { authClient } from "@/lib/auth-client";
 
 export default function LoginPage() {
   const router = useRouter();
-  const [isVisible, setIsVisible] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [serverError, setServerError] = useState("");
 
-  const toggleVisibility = () => setIsVisible((prev) => !prev);
-
-  const handleLogin = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    setServerError("");
 
     const formData = new FormData(e.currentTarget);
-    const { email, password } = Object.fromEntries(formData);
-    console.log({ email, password });
+    const { name, image, email, password } = Object.fromEntries(formData);
+    console.log({ email, password, image, name });
 
-    setIsLoading(true);
-
-    const { data, error } = await authClient.signIn.email({
+    const { data, error } = await authClient.signUp.email({
+      name,
       email,
+      image,
       password,
     });
 
-    setIsLoading(false);
-
+    console.log(data, error);
     if (error) {
-      setServerError(error.message || "Invalid email or password.");
+      alert(error.message || "Invalid email or password.");
       return;
     }
 
-    router.push("/dashboard");
+
+    router.push("/");
   };
 
-  const handleGoogleLogin = async () => {
-    await authClient.signIn.social({ provider: "google" });
-  };
+  // const handleGoogleLogin = async () => {
+  //   await authClient.signIn.social({ provider: "google" });
+  // };
 
   return (
     <div
@@ -79,10 +56,7 @@ export default function LoginPage() {
       }}
     >
       {/* Dashed outer border */}
-      <div
-        className="w-full max-w-105 rounded-[18px] animate__animated animate__fadeIn animate__faster"
-        style={{ border: "2px dashed #7ab8d4" }}
-      >
+      <div className="w-full max-w-105 rounded-[18px] animate__animated animate__fadeIn animate__faster border border-[rgba(253,230,138,0.5)] shadow-lg">
         <div className="bg-white rounded-[18px] overflow-hidden">
           {/* Brand Bar */}
           <div
@@ -113,12 +87,8 @@ export default function LoginPage() {
             </div>
 
             {/* HeroUI Form */}
-            <Form className="flex w-96 flex-col gap-4">
-              <TextField
-                isRequired
-                name="name"
-                type="name"
-              >
+            <Form onSubmit={handleRegister} className="flex flex-col gap-4">
+              <TextField isRequired name="name" type="name">
                 <Label>Name</Label>
                 <Input placeholder="Enter your name" />
                 <FieldError />
@@ -138,11 +108,7 @@ export default function LoginPage() {
                 <Input placeholder="john@example.com" />
                 <FieldError />
               </TextField>
-              <TextField
-                isRequired
-                name="image"
-                type="url"
-              >
+              <TextField isRequired name="image" type="url">
                 <Label>Photo URL</Label>
                 <Input placeholder="https://image-url.com/avatar.jpg" />
                 <FieldError />
@@ -206,7 +172,12 @@ export default function LoginPage() {
             </div>
 
             {/* Google Button */}
-            <Button className="w-full text-[#333] transition-all duration-200 hover:border-[#F0B429] hover:bg-[#fff8ec] rounded-[10px] h-12" variant="outline" type="button" onPress={handleGoogleLogin}>
+            <Button
+              className="w-full text-[#333] transition-all duration-200 hover:border-[#F0B429] hover:bg-[#fff8ec] rounded-[10px] h-12"
+              variant="outline"
+              type="button"
+              
+            >
               <Icon icon="devicon:google" />
               Sign in with Google
             </Button>

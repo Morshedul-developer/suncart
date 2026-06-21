@@ -1,8 +1,6 @@
 "use client";
 
-import { useState } from "react";
 import { Button, Link } from "@heroui/react";
-import { FcGoogle } from "react-icons/fc";
 import { IoHomeOutline } from "react-icons/io5";
 import {
   Description,
@@ -12,54 +10,29 @@ import {
   Label,
   TextField,
 } from "@heroui/react";
-// import { authClient } from "@/lib/auth-client"; // Better Auth client
+import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import "animate.css";
 import { Check } from "lucide-react";
 import { Icon } from "@iconify/react";
 
-const inputClassNames = {
-  label: "text-[14px] font-semibold text-[#1a1a1a]",
-  inputWrapper: [
-    "border-[1.5px] border-[#F0B429]",
-    "bg-white",
-    "rounded-[10px]",
-    "h-12",
-    "hover:border-[#d4940e]",
-    "focus-within:border-[#d4940e]",
-    "shadow-none",
-  ],
-  input: "text-sm placeholder:text-[#ccc]",
-  errorMessage: "text-red-500 text-xs mt-1",
-};
-
 export default function LoginPage() {
   const router = useRouter();
-  const [isVisible, setIsVisible] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [serverError, setServerError] = useState("");
-
-  const toggleVisibility = () => setIsVisible((prev) => !prev);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setServerError("");
 
     const formData = new FormData(e.currentTarget);
     const { email, password } = Object.fromEntries(formData);
     console.log({ email, password });
-
-    setIsLoading(true);
 
     const { data, error } = await authClient.signIn.email({
       email,
       password,
     });
 
-    setIsLoading(false);
-
     if (error) {
-      setServerError(error.message || "Invalid email or password.");
+      alert(error.message || "Invalid email or password.");
       return;
     }
 
@@ -79,10 +52,7 @@ export default function LoginPage() {
       }}
     >
       {/* Dashed outer border */}
-      <div
-        className="w-full max-w-105 rounded-[18px] animate__animated animate__fadeIn animate__faster"
-        style={{ border: "2px dashed #7ab8d4" }}
-      >
+      <div className="w-full max-w-105 rounded-[18px] animate__animated animate__fadeIn animate__faster border border-[rgba(253,230,138,0.5)] shadow-lg">
         <div className="bg-white rounded-[18px] overflow-hidden">
           {/* Brand Bar */}
           <div
@@ -113,7 +83,7 @@ export default function LoginPage() {
             </div>
 
             {/* HeroUI Form */}
-            <Form className="flex w-96 flex-col gap-4">
+            <Form onSubmit={handleLogin} className="flex flex-col gap-4">
               <TextField
                 isRequired
                 name="email"
@@ -192,7 +162,7 @@ export default function LoginPage() {
               className="w-full text-[#333] transition-all duration-200 hover:border-[#F0B429] hover:bg-[#fff8ec] rounded-[10px] h-12"
               variant="outline"
               type="button"
-              onPress={handleGoogleLogin}
+              onClick={handleGoogleLogin}
             >
               <Icon icon="devicon:google" />
               Sign in with Google
