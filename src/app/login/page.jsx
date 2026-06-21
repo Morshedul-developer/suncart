@@ -156,23 +156,27 @@ export default function LoginPage() {
               </TextField>
               <div className="flex gap-2">
                 <Button
-  type="submit"
-  className="h-11 px-6 rounded-full font-bold text-[#3d2000] transition-all duration-200"
-  style={{ background: "#F5A623" }}
-  onMouseEnter={(e) => e.currentTarget.style.background = "#e09520"}
-  onMouseLeave={(e) => e.currentTarget.style.background = "#F5A623"}
->
-  <Check />
-  Login
-</Button>
+                  type="submit"
+                  className="h-11 px-6 rounded-full font-bold text-[#3d2000] transition-all duration-200"
+                  style={{ background: "#F5A623" }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.background = "#e09520")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.background = "#F5A623")
+                  }
+                >
+                  <Check />
+                  Login
+                </Button>
 
-<Button
-  type="reset"
-  variant="secondary"
-  className="h-11 px-6 rounded-full font-semibold text-[#7A5200] border-[1.5px] border-[#F0B429] bg-white transition-all duration-200 hover:bg-[#fff8ec]"
->
-  Reset
-</Button>
+                <Button
+                  type="reset"
+                  variant="secondary"
+                  className="h-11 px-6 rounded-full font-semibold text-[#7A5200] border-[1.5px] border-[#F0B429] bg-white transition-all duration-200 hover:bg-[#fff8ec]"
+                >
+                  Reset
+                </Button>
               </div>
             </Form>
 
@@ -184,10 +188,15 @@ export default function LoginPage() {
             </div>
 
             {/* Google Button */}
-            <Button className="w-full text-[#333] transition-all duration-200 hover:border-[#F0B429] hover:bg-[#fff8ec] rounded-[10px] h-12" variant="outline" type="button" onPress={handleGoogleLogin}>
-                          <Icon icon="devicon:google" />
-                          Sign in with Google
-                        </Button>
+            <Button
+              className="w-full text-[#333] transition-all duration-200 hover:border-[#F0B429] hover:bg-[#fff8ec] rounded-[10px] h-12"
+              variant="outline"
+              type="button"
+              onPress={handleGoogleLogin}
+            >
+              <Icon icon="devicon:google" />
+              Sign in with Google
+            </Button>
 
             {/* Register Link */}
             <p className="text-center text-sm text-[#888] mt-6">

@@ -116,6 +116,15 @@ export default function LoginPage() {
             <Form className="flex w-96 flex-col gap-4">
               <TextField
                 isRequired
+                name="name"
+                type="name"
+              >
+                <Label>Name</Label>
+                <Input placeholder="Enter your name" />
+                <FieldError />
+              </TextField>
+              <TextField
+                isRequired
                 name="email"
                 type="email"
                 validate={(value) => {
@@ -127,6 +136,15 @@ export default function LoginPage() {
               >
                 <Label>Email</Label>
                 <Input placeholder="john@example.com" />
+                <FieldError />
+              </TextField>
+              <TextField
+                isRequired
+                name="image"
+                type="url"
+              >
+                <Label>Photo URL</Label>
+                <Input placeholder="https://image-url.com/avatar.jpg" />
                 <FieldError />
               </TextField>
               <TextField
@@ -167,7 +185,7 @@ export default function LoginPage() {
                   }
                 >
                   <Check />
-                  Login
+                  Register
                 </Button>
 
                 <Button
