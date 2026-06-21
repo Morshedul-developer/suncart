@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "name": "UV Protection Sunglasses",
+    "brand": "SunShade",
+    "price": 15,
+    "rating": 4.7,
+    "stock": 10,
+    "description": "Stylish UV protection sunglasses perfect for summer outings.",
+    "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083",
+    "category": "Accessories"
+  },
+  {
+    "id": 2,
+    "name": "Cooling Sports Cap",
+    "brand": "Breeze",
+    "price": 12,
+    "rating": 4.5,
+    "stock": 18,
+    "description": "Lightweight breathable cap designed for hot summer days.",
+    "image": "https://images.unsplash.com/photo-1521369909029-2afed882baee",
+    "category": "Accessories"
+  },
+  {
+    "id": 3,
+    "name": "SPF 50+ Sunscreen",
+    "brand": "GlowGuard",
+    "price": 18,
+    "rating": 4.8,
+    "stock": 25,
+    "description": "Broad-spectrum sunscreen offering long-lasting UV protection.",
+    "image": "https://images.unsplash.com/photo-1556228578-8c89e6adf883",
+    "category": "Skincare"
+  },
+  {
+    "id": 4,
+    "name": "Hydration Water Bottle",
+    "brand": "AquaPack",
+    "price": 20,
+    "rating": 4.6,
+    "stock": 15,
+    "description": "Insulated bottle that keeps drinks cold for up to 24 hours.",
+    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8",
+    "category": "Outdoor"
+  },
+  {
+    "id": 5,
+    "name": "Summer Beach Towel",
+    "brand": "CoastLine",
+    "price": 14,
+    "rating": 4.4,
+    "stock": 20,
+    "description": "Soft and quick-drying beach towel for summer adventures.",
+    "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+    "category": "Lifestyle"
+  },
+  {
+    "id": 6,
+    "name": "Portable Mini Fan",
+    "brand": "CoolAir",
+    "price": 16,
+    "rating": 4.5,
+    "stock": 30,
+    "description": "Rechargeable handheld fan with adjustable speed settings.",
+    "image": "https://images.unsplash.com/photo-1529078155058-5d716f45d604",
+    "category": "Electronics"
+  },
+  {
+    "id": 7,
+    "name": "Lightweight Summer Backpack",
+    "brand": "TrailGo",
+    "price": 28,
+    "rating": 4.7,
+    "stock": 12,
+    "description": "Compact backpack ideal for day trips and outdoor activities.",
+    "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+    "category": "Travel"
+  },
+  {
+    "id": 8,
+    "name": "Aloe Vera After Sun Gel",
+    "brand": "GlowGuard",
+    "price": 11,
+    "rating": 4.8,
+    "stock": 22,
+    "description": "Soothing aloe vera gel that cools and hydrates sun-exposed skin.",
+    "image": "https://images.unsplash.com/photo-1612817288484-6f916006741a",
+    "category": "Skincare"
+  },
+  {
+    "id": 9,
+    "name": "Waterproof Beach Sandals",
+    "brand": "WaveWalk",
+    "price": 24,
+    "rating": 4.6,
+    "stock": 14,
+    "description": "Comfortable waterproof sandals designed for beach and poolside use.",
+    "image": "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519",
+    "category": "Footwear"
+  }
+]
