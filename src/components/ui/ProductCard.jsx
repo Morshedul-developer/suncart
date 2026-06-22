@@ -1,9 +1,11 @@
 import { Star } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ProductCard({ product }) {
   return (
-    <div className="group overflow-hidden rounded-3xl border border-zinc-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+    <Link href={`/products/${product.id}`}>
+    <div className="group overflow-hidden rounded-3xl border border-zinc-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl cursor-pointer">
       {/* Image */}
       <div className="relative overflow-hidden bg-zinc-100">
         <div className="relative h-72 w-full overflow-hidden">
@@ -73,5 +75,6 @@ export default function ProductCard({ product }) {
         </div>
       </div>
     </div>
+    </Link>
   );
 }
