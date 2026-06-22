@@ -7,7 +7,12 @@
     "rating": 4.7,
     "stock": 10,
     "description": "Stylish UV protection sunglasses perfect for summer outings.",
-    "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083",
+    "images": [
+      "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=1200&q=80"
+    ],
     "category": "Accessories"
   },
   {
@@ -18,7 +23,12 @@
     "rating": 4.5,
     "stock": 18,
     "description": "Lightweight breathable cap designed for hot summer days.",
-    "image": "https://images.unsplash.com/photo-1521369909029-2afed882baee",
+    "images": [
+      "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1520975922203-b9f2f5b5b3a6?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1520975682031-a6a2d0c7d7c8?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1520975869018-5c7b7d4a1d45?auto=format&fit=crop&w=1200&q=80"
+    ],
     "category": "Accessories"
   },
   {
@@ -29,7 +39,12 @@
     "rating": 4.8,
     "stock": 25,
     "description": "Broad-spectrum sunscreen offering long-lasting UV protection.",
-    "image": "https://images.unsplash.com/photo-1556228578-8c89e6adf883",
+    "images": [
+      "https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1585232351009-aa87416fca90?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1200&q=80"
+    ],
     "category": "Skincare"
   },
   {
@@ -40,7 +55,12 @@
     "rating": 4.6,
     "stock": 15,
     "description": "Insulated bottle that keeps drinks cold for up to 24 hours.",
-    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8",
+    "images": [
+      "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1526401485004-2fda9f3d1f7c?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1585238342028-4c1f7c1b9f2b?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1625772452859-1c03d5f7a8f0?auto=format&fit=crop&w=1200&q=80"
+    ],
     "category": "Outdoor"
   },
   {
@@ -51,7 +71,12 @@
     "rating": 4.4,
     "stock": 20,
     "description": "Soft and quick-drying beach towel for summer adventures.",
-    "image": "https://images.unsplash.com/photo-1625479969471-c0a79753d2d3?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "images": [
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=1200&q=80"
+    ],
     "category": "Lifestyle"
   },
   {
@@ -62,7 +87,12 @@
     "rating": 4.5,
     "stock": 30,
     "description": "Rechargeable handheld fan with adjustable speed settings.",
-    "image": "https://plus.unsplash.com/premium_photo-1752192843927-45c7bcf42688?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "images": [
+      "https://images.unsplash.com/photo-1616628182500-84b9c5b7a0c6?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1621344246996-0a4b1b6f2c2b?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1593642532973-d31b6557fa68?auto=format&fit=crop&w=1200&q=80"
+    ],
     "category": "Electronics"
   },
   {
@@ -73,7 +103,12 @@
     "rating": 4.7,
     "stock": 12,
     "description": "Compact backpack ideal for day trips and outdoor activities.",
-    "image": "https://images.unsplash.com/photo-1557160836-f3a6d1afaab2?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "images": [
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1526481280698-8fcc13fd6c32?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=80"
+    ],
     "category": "Travel"
   },
   {
@@ -84,7 +119,12 @@
     "rating": 4.8,
     "stock": 22,
     "description": "Soothing aloe vera gel that cools and hydrates sun-exposed skin.",
-    "image": "https://images.unsplash.com/photo-1612817288484-6f916006741a",
+    "images": [
+      "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1585232351009-aa87416fca90?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600180758890-6b94519a8c9f?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1200&q=80"
+    ],
     "category": "Skincare"
   },
   {
@@ -95,7 +135,12 @@
     "rating": 4.6,
     "stock": 14,
     "description": "Comfortable waterproof sandals designed for beach and poolside use.",
-    "image": "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519",
+    "images": [
+      "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1528701800489-20be9c5f0d3b?auto=format&fit=crop&w=1200&q=80"
+    ],
     "category": "Footwear"
   }
 ]
