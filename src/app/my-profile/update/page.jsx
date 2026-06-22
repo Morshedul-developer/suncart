@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import { Button, Form } from "@heroui/react";
@@ -9,9 +8,16 @@ const UpdateProfile = () => {
   const userData = authClient.useSession();
   const user = userData.data?.user;
 
-  const handleUpdate = async () => {
-    // এখানে তোমার API call যাবে
-    console.log({ name, image });
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const image = e.target.image.value;
+    await authClient.updateUser({
+      name,
+      image,
+    });
+    e.target.name.value = "";
+    e.target.image.value = "";
   };
 
   return (
@@ -37,26 +43,24 @@ const UpdateProfile = () => {
         </div>
 
         {/* Inputs */}
-        <Form className="space-y-5">
+        <Form onSubmit={handleUpdate} className="space-y-5">
           <div>
             <label className="text-sm text-zinc-600">Name</label>
             <input
-            value={user?.name}
               type="text"
               name="name"
               className="w-full mt-1 px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-black"
-              placeholder="Enter your name"
+              placeholder="Enter your new name"
             />
           </div>
 
           <div>
             <label className="text-sm text-zinc-600">Image URL</label>
             <input
-            value={user?.image}
               type="url"
               name="image"
               className="w-full mt-1 px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-black"
-              placeholder="Enter image URL"
+              placeholder="Enter new image URL"
             />
           </div>
           {/* Button */}
@@ -64,7 +68,6 @@ const UpdateProfile = () => {
             size="lg"
             radius="lg"
             type="submit"
-            onClick={handleUpdate}
             className="w-full mt-4 h-14 bg-black text-white font-semibold transition-all duration-300
   hover:scale-[1.02]
   hover:bg-zinc-800
