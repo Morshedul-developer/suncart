@@ -43,6 +43,11 @@ export default function LoginPage() {
   //   await authClient.signIn.social({ provider: "google" });
   // };
 
+  const handleGoogleLogin = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+    });
+  };
   return (
     <div
       className="min-h-screen flex items-center justify-center px-4 py-10"
@@ -159,6 +164,7 @@ export default function LoginPage() {
 
             {/* Google Button */}
             <Button
+              onClick={handleGoogleLogin}
               className="w-full text-[#333] transition-all duration-200 hover:border-[#F0B429] hover:bg-[#fff8ec] rounded-[10px] h-12"
               variant="outline"
               type="button"
