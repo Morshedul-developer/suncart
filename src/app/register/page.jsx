@@ -19,32 +19,32 @@ import { useRouter } from "next/navigation";
 export default function RegisterPage() {
   const router = useRouter();
 
-  // const handleRegister = async (e) => {
-  //   e.preventDefault();
+  const handleRegister = async (e) => {
+    e.preventDefault();
 
-  //   const formData = new FormData(e.currentTarget);
-  //   const { name, image, email, password } = Object.fromEntries(formData);
-  //   console.log({ email, password, image, name });
+    const formData = new FormData(e.currentTarget);
+    const { name, image, email, password } = Object.fromEntries(formData);
+    console.log({ email, password, image, name });
 
-  //   const { data, error } = await authClient.signUp.email({
-  //     name,
-  //     email,
-  //     image,
-  //     password,
-  //   });
+    const { data, error } = await authClient.signUp.email({
+      name,
+      email,
+      image,
+      password,
+    });
 
-  //   console.log(data, error);
-  //   if (error) {
-  //     alert(error.message || "Something went wrong...!");
-  //     return;
-  //   }
+    console.log(data, error);
+    if (error) {
+      alert(error.message || "Something went wrong...!");
+      return;
+    }
 
-  //   router.push("/");
-  // };
+    router.push("/");
+  };
 
-  // const handleGoogleLogin = async () => {
-  //   await authClient.signIn.social({ provider: "google" });
-  // };
+  const handleGoogleLogin = async () => {
+    await authClient.signIn.social({ provider: "google" });
+  };
 
   return (
     <div
@@ -86,7 +86,7 @@ export default function RegisterPage() {
             </div>
 
             {/* HeroUI Form */}
-            <Form  className="flex flex-col gap-4">
+            <Form onSubmit={handleRegister} className="flex flex-col gap-4">
               <TextField isRequired name="name" type="name">
                 <Label>Name</Label>
                 <Input placeholder="Enter your name" />
@@ -172,6 +172,7 @@ export default function RegisterPage() {
 
             {/* Google Button */}
             <Button
+            onClick={handleGoogleLogin}
               className="w-full text-[#333] transition-all duration-200 hover:border-[#F0B429] hover:bg-[#fff8ec] rounded-[10px] h-12"
               variant="outline"
               type="button"
