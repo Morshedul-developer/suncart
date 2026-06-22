@@ -16,31 +16,31 @@ import { Icon } from "@iconify/react";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 
-export default function registerPage() {
+export default function RegisterPage() {
   const router = useRouter();
 
-  const handleRegister = async (e) => {
-    e.preventDefault();
+  // const handleRegister = async (e) => {
+  //   e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
-    const { name, image, email, password } = Object.fromEntries(formData);
-    console.log({ email, password, image, name });
+  //   const formData = new FormData(e.currentTarget);
+  //   const { name, image, email, password } = Object.fromEntries(formData);
+  //   console.log({ email, password, image, name });
 
-    const { data, error } = await authClient.signUp.email({
-      name,
-      email,
-      image,
-      password,
-    });
+  //   const { data, error } = await authClient.signUp.email({
+  //     name,
+  //     email,
+  //     image,
+  //     password,
+  //   });
 
-    console.log(data, error);
-    if (error) {
-      alert(error.message || "Something went wrong...!");
-      return;
-    }
+  //   console.log(data, error);
+  //   if (error) {
+  //     alert(error.message || "Something went wrong...!");
+  //     return;
+  //   }
 
-    router.push("/");
-  };
+  //   router.push("/");
+  // };
 
   // const handleGoogleLogin = async () => {
   //   await authClient.signIn.social({ provider: "google" });
@@ -86,7 +86,7 @@ export default function registerPage() {
             </div>
 
             {/* HeroUI Form */}
-            <Form onSubmit={handleRegister} className="flex flex-col gap-4">
+            <Form  className="flex flex-col gap-4">
               <TextField isRequired name="name" type="name">
                 <Label>Name</Label>
                 <Input placeholder="Enter your name" />

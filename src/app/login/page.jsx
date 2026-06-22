@@ -19,25 +19,25 @@ import { Icon } from "@iconify/react";
 export default function LoginPage() {
   const router = useRouter();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
-    const { email, password } = Object.fromEntries(formData);
-    console.log({ email, password });
+  //   const formData = new FormData(e.currentTarget);
+  //   const { email, password } = Object.fromEntries(formData);
+  //   console.log({ email, password });
 
-    const { data, error } = await authClient.signIn.email({
-      email,
-      password,
-    });
+  //   const { data, error } = await authClient.signIn.email({
+  //     email,
+  //     password,
+  //   });
 
-    if (error) {
-      alert(error.message || "Invalid email or password.");
-      return;
-    }
+  //   if (error) {
+  //     alert(error.message || "Invalid email or password.");
+  //     return;
+  //   }
 
-    router.push("/");
-  };
+  //   router.push("/");
+  // };
 
   // const handleGoogleLogin = async () => {
   //   await authClient.signIn.social({ provider: "google" });
@@ -83,7 +83,7 @@ export default function LoginPage() {
             </div>
 
             {/* HeroUI Form */}
-            <Form onSubmit={handleLogin} className="flex flex-col gap-4">
+            <Form className="flex flex-col gap-4">
               <TextField
                 isRequired
                 name="email"
