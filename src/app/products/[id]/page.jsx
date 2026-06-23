@@ -19,7 +19,7 @@ const ProductDetailsPage = async ({ params }) => {
               alt={product.name}
               width={800}
               height={800}
-              className="w-full h-125 object-cover"
+              className="w-full h-125 object-cover transition duration-500 group-hover:scale-110"
             />
           </div>
 
