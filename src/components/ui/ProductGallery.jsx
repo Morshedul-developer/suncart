@@ -2,13 +2,15 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { Button } from "@heroui/react";
 
 const ProductGallery = ({ product }) => {
-  const [selectedImage, setSelectedImage] = useState(product.images[0]);
+  const [selectedImage, setSelectedImage] = useState(product?.images?.[0]);
 
   return (
-    <div className="space-y-4">
-      <div className="group relative overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-50">
+    <div className="space-y-5">
+      {/* Main Image */}
+      <div className="group relative overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-50 shadow-sm">
         <Image
           src={selectedImage}
           alt={product.name}
@@ -19,26 +21,44 @@ const ProductGallery = ({ product }) => {
         />
       </div>
 
+      {/* Thumbnails */}
       <div className="grid grid-cols-4 gap-4">
         {product.images.map((img, index) => (
-          <button
+          <Button
             key={index}
             type="button"
             onClick={() => setSelectedImage(img)}
-            className={`group overflow-hidden rounded-2xl border-2 transition-all duration-300 ${
-              selectedImage === img
-                ? "border-black shadow-lg"
-                : "border-zinc-200 hover:border-zinc-400"
-            }`}
+            radius="lg"
+            className={`
+              group
+              relative
+              p-0
+              min-w-0
+              h-auto
+              overflow-hidden
+              cursor-pointer
+              border-2
+              transition-all
+              duration-300
+              ${
+                selectedImage === img
+                  ? "border-black shadow-xl scale-[1.03]"
+                  : "border-zinc-200 hover:border-zinc-400 hover:shadow-md"
+              }
+            `}
           >
             <Image
               src={img}
-              alt={`${product.name}-${index}`}
+              alt={`${product.name}-${index + 1}`}
               width={200}
               height={200}
               className="h-24 w-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
-          </button>
+
+            {selectedImage === img && (
+              <div className="absolute inset-0 ring-2 ring-black rounded-xl pointer-events-none" />
+            )}
+          </Button>
         ))}
       </div>
     </div>
