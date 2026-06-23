@@ -59,7 +59,7 @@ const NavBar = () => {
           <div className="hidden md:flex items-center gap-3">
             <Avatar size="sm">
               <Avatar.Image
-                alt="John Doe"
+                alt={user?.name}
                 src={user?.image}
                 referrerPolicy="no-referrer"
               />
@@ -118,10 +118,10 @@ const NavBar = () => {
           {/* Auth Mobile */}
           <div className="flex flex-col gap-3 pt-3 border-t">
             {user ? (
-              <div className="flex md:hidden items-center gap-3">
+              <div className="flex md:hidden justify-center items-center gap-3">
                 <Avatar size="sm">
                   <Avatar.Image
-                    alt="John Doe"
+                    alt={user?.name}
                     src={user?.image}
                     referrerPolicy="no-referrer"
                   />
