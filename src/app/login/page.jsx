@@ -84,7 +84,7 @@ export default function LoginPage() {
             </div>
 
             {/* HeroUI Form */}
-            <Form onSubmit={handleGoogleLogin} className="flex flex-col gap-4">
+            <Form onSubmit={handleLogin} className="flex flex-col gap-4">
               <TextField
                 isRequired
                 name="email"
