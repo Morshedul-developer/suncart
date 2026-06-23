@@ -3,9 +3,7 @@ import ProductCard from "./ui/ProductCard";
 import { FaArrowRight } from "react-icons/fa";
 
 const PopularProducts = async () => {
-  const res = await fetch("https://suncart-inky.vercel.app/products.json", {
-    cache: 'no-store'
-  });
+  const res = await fetch("https://suncart-inky.vercel.app/products.json");
   const products = await res.json();
   return (
     <section className="max-w-7xl mx-auto space-y-10 px-4 md:px-0 my-20">
