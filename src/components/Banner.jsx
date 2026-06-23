@@ -23,7 +23,7 @@ const banners = [
     title: "New Arrivals",
     subtitle: "Latest trending products just for you",
     image:
-      "https://res.cloudinary.com/dsgnat4bt/image/upload/q_auto/f_auto/v1781959982/photo-1441986300917-64674bd600d8_je6onz.jpg",
+      "https://res.cloudinary.com/dsgnat4bt/image/upload/v1782209044/photo-1580793241553-e9f1cce181af_zgwmox.jpg",
   },
   {
     id: 3,

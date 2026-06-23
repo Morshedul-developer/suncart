@@ -17,7 +17,7 @@ const ProductGallery = ({ product }) => {
           width={800}
           height={800}
           priority
-          className="h-125 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+          className="h-75 md:h-125 w-full object-center md:object-cover transition-transform duration-700 ease-out group-hover:scale-110"
         />
       </div>
 
@@ -26,8 +26,7 @@ const ProductGallery = ({ product }) => {
         {product.images.map((img, index) => (
           <Button
             key={index}
-            type="button"
-            onClick={() => setSelectedImage(img)}
+            onPress={() => setSelectedImage(img)}
             radius="lg"
             className={`
               group
@@ -52,7 +51,7 @@ const ProductGallery = ({ product }) => {
               alt={`${product.name}-${index + 1}`}
               width={200}
               height={200}
-              className="h-24 w-full object-cover transition-transform duration-500 group-hover:scale-110"
+              className="h-16 md:h-24 w-40 object-center md:object-cover transition-transform duration-500 group-hover:scale-110"
             />
 
             {selectedImage === img && (
