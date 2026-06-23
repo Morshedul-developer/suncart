@@ -27,7 +27,7 @@ const brands = [
 
 const Brands = () => {
   return (
-    <section className="max-w-7xl mx-auto space-y-10 px-4 md:px-0 mb-30">
+    <section className="max-w-7xl mx-auto space-y-10 px-4 md:px-0 mb-12 md:mb-30">
       <h3 className="text-2xl md:text-3xl font-bold text-center">
         Our Top Brands
       </h3>
