@@ -29,11 +29,8 @@ const NavBar = () => {
   return (
     <nav className="border-b bg-white relative">
       <div className="max-w-7xl mx-auto flex h-16 items-center justify-between px-4">
-
         {/* Logo */}
-        <h1 className="font-bold text-[#6C4F00] text-3xl">
-          SunCart
-        </h1>
+        <h1 className="font-bold text-[#6C4F00] text-3xl">SunCart</h1>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex items-center gap-8">
@@ -69,11 +66,7 @@ const NavBar = () => {
               <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
             </Avatar>
 
-            <Button
-              variant="danger"
-              size="sm"
-              onClick={handleLogout}
-            >
+            <Button variant="danger" size="sm" onClick={handleLogout}>
               Logout
             </Button>
           </div>
@@ -96,10 +89,7 @@ const NavBar = () => {
         )}
 
         {/* Mobile Button */}
-        <button
-          className="md:hidden text-2xl"
-          onClick={() => setOpen(!open)}
-        >
+        <button className="md:hidden text-2xl" onClick={() => setOpen(!open)}>
           ☰
         </button>
       </div>
@@ -107,7 +97,6 @@ const NavBar = () => {
       {/* Mobile Menu */}
       {open && (
         <div className="md:hidden px-4 pb-4 space-y-4 bg-white border-t">
-
           {/* Links */}
           <div className="flex flex-col items-center gap-3">
             {links.map((link, index) => (
@@ -129,12 +118,20 @@ const NavBar = () => {
           {/* Auth Mobile */}
           <div className="flex flex-col gap-3 pt-3 border-t">
             {user ? (
-              <Button
-                variant="danger"
-                onClick={handleLogout}
-              >
-                Logout
-              </Button>
+              <div className="flex md:hidden items-center gap-3">
+                <Avatar size="sm">
+                  <Avatar.Image
+                    alt="John Doe"
+                    src={user?.image}
+                    referrerPolicy="no-referrer"
+                  />
+                  <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
+                </Avatar>
+
+                <Button variant="danger" size="sm" onClick={handleLogout}>
+                  Logout
+                </Button>
+              </div>
             ) : (
               <>
                 <Link
