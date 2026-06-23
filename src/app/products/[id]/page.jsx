@@ -1,72 +1,58 @@
-import Image from "next/image";
 import { Star, ShieldCheck, Truck, Package } from "lucide-react";
 import { Button } from "@heroui/react";
+import ProductGallery from "@/components/ui/ProductGallery";
 
 const ProductDetailsPage = async ({ params }) => {
   const { id } = await params;
-  const res = await fetch("https://suncart-inky.vercel.app/products.json");
+
+  const res = await fetch("https://suncart-inky.vercel.app/products.json", {
+    cache: "no-store",
+  });
+
   const products = await res.json();
+
   const product = products.find((product) => product.id == id);
 
   return (
     <section className="max-w-7xl mx-auto px-4 pt-12 pb-20">
-      <div className="grid lg:grid-cols-2 gap-10">
-        {/* Image Section */}
-        <div className="space-y-4">
-          <div className="relative overflow-hidden rounded-3xl bg-zinc-100">
-            <Image
-              src={product.images[0]}
-              alt={product.name}
-              width={800}
-              height={800}
-              className="w-full h-125 object-cover transition duration-500 group-hover:scale-110"
-            />
-          </div>
-
-          <div className="grid grid-cols-4 gap-4">
-            {product.images.map((item,index) => (
-              <div
-                key={index}
-                className="relative overflow-hidden rounded-2xl border border-zinc-200 cursor-pointer"
-              >
-                <Image
-                  src={item}
-                  alt={product.name}
-                  width={200}
-                  height={200}
-                  className="h-24 w-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+      <div className="grid lg:grid-cols-2 gap-12">
+        {/* Gallery */}
+        <ProductGallery product={product} />
 
         {/* Content */}
         <div className="flex flex-col justify-center">
-          <span className="w-fit rounded-full border border-sky-200 bg-sky-50 px-4 py-1 text-sm font-medium text-sky-700">
+          <span className="w-fit rounded-full border border-zinc-200 bg-zinc-100 px-4 py-1.5 text-sm font-medium text-zinc-700">
             {product.category}
           </span>
 
-          <h1 className="mt-4 text-4xl font-bold text-zinc-900">
+          <h1 className="mt-5 text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight">
             {product.name}
           </h1>
 
-          <div className="mt-4 flex items-center gap-3">
-            <div className="flex items-center gap-1">
-              <Star size={18} className="fill-yellow-400 text-yellow-400" />
+          <div className="mt-5 flex items-center gap-3">
+            <div className="flex items-center gap-1 rounded-full bg-yellow-50 px-3 py-1">
+              <Star size={16} className="fill-yellow-400 text-yellow-400" />
               <span className="font-semibold">{product.rating}</span>
             </div>
 
-            <span className="text-zinc-400">•</span>
+            <span className="text-zinc-400">|</span>
 
-            <span className="text-zinc-600">Brand: {product.brand}</span>
+            <span className="text-zinc-600">
+              Brand: <span className="font-semibold">{product.brand}</span>
+            </span>
           </div>
 
-          <h2 className="mt-6 text-5xl font-bold text-zinc-900">
-            ${product.price}
-          </h2>
+          <div className="mt-6">
+            <h2 className="text-5xl font-bold text-zinc-900">
+              ${product.price}
+            </h2>
 
-          <p className="mt-6 leading-8 text-zinc-600">{product.description}</p>
+            <p className="mt-2 text-sm font-medium text-emerald-600">
+              In Stock • Ready to Ship
+            </p>
+          </div>
+
+          <p className="mt-8 leading-8 text-zinc-600">{product.description}</p>
 
           <div className="mt-6">
             <span className="rounded-full bg-green-100 px-4 py-2 text-sm font-medium text-green-700">
@@ -76,28 +62,28 @@ const ProductDetailsPage = async ({ params }) => {
 
           {/* Features */}
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="rounded-2xl border border-zinc-200 p-4">
-              <ShieldCheck className="mb-2" />
-              <p className="text-sm font-medium">Premium Quality</p>
+            <div className="rounded-2xl border border-zinc-200 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+              <ShieldCheck className="mb-3" />
+              <p className="text-sm font-semibold">Premium Quality</p>
             </div>
 
-            <div className="rounded-2xl border border-zinc-200 p-4">
-              <Truck className="mb-2" />
-              <p className="text-sm font-medium">Free Shipping</p>
+            <div className="rounded-2xl border border-zinc-200 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+              <Truck className="mb-3" />
+              <p className="text-sm font-semibold">Free Shipping</p>
             </div>
 
-            <div className="rounded-2xl border border-zinc-200 p-4">
-              <Package className="mb-2" />
-              <p className="text-sm font-medium">Secure Packaging</p>
+            <div className="rounded-2xl border border-zinc-200 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+              <Package className="mb-3" />
+              <p className="text-sm font-semibold">Secure Packaging</p>
             </div>
           </div>
 
-          {/* Actions */}
+          {/* Buttons */}
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <Button
               size="lg"
               radius="lg"
-              className="w-full sm:w-1/2 h-14 bg-black text-white font-semibold transition-all duration-300 hover:scale-[1.02] hover:bg-zinc-800 hover:shadow-[0_12px_30px_rgba(0,0,0,0.25)]"
+              className="h-14 w-full sm:flex-1 bg-black text-white font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_15px_35px_rgba(0,0,0,0.25)]"
             >
               Add To Cart
             </Button>
@@ -105,8 +91,8 @@ const ProductDetailsPage = async ({ params }) => {
             <Button
               size="lg"
               radius="lg"
-              variant="outline"
-              className="w-full sm:w-1/2 h-14 border-zinc-300 bg-white font-semibold text-zinc-900 transition-all duration-300 hover:scale-[1.02] hover:border-zinc-900 hover:bg-zinc-50 hover:shadow-lg"
+              variant="bordered"
+              className="h-14 w-full sm:flex-1 border-zinc-300 font-semibold transition-all duration-300 hover:scale-[1.02] hover:border-black hover:shadow-lg"
             >
               Buy Now
             </Button>
