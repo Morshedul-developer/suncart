@@ -15,22 +15,22 @@ const ProductDetailsPage = async ({ params }) => {
         <div className="space-y-4">
           <div className="relative overflow-hidden rounded-3xl bg-zinc-100">
             <Image
-              src={product.image}
+              src={product.images[0]}
               alt={product.name}
               width={800}
               height={800}
-              className="w-full h-[500px] object-cover"
+              className="w-full h-125 object-cover"
             />
           </div>
 
           <div className="grid grid-cols-4 gap-4">
-            {[1, 2, 3, 4].map((item) => (
+            {product.images.map((item,index) => (
               <div
-                key={item}
+                key={index}
                 className="relative overflow-hidden rounded-2xl border border-zinc-200 cursor-pointer"
               >
                 <Image
-                  src={product.image}
+                  src={item}
                   alt={product.name}
                   width={200}
                   height={200}
