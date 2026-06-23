@@ -5,9 +5,7 @@ import ProductGallery from "@/components/ui/ProductGallery";
 const ProductDetailsPage = async ({ params }) => {
   const { id } = await params;
 
-  const res = await fetch("https://suncart-inky.vercel.app/products.json", {
-    cache: "no-store",
-  });
+  const res = await fetch("https://suncart-inky.vercel.app/products.json");
 
   const products = await res.json();
 
