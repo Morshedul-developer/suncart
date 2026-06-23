@@ -10,7 +10,7 @@ export default function ProductCard({ product }) {
       <div className="relative overflow-hidden bg-zinc-100">
         <div className="relative h-72 w-full overflow-hidden">
           <Image
-            src={product.images[0]}
+            src={product.images[1]}
             alt={product.name}
             fill
             className="object-cover transition duration-500 group-hover:scale-110"
