@@ -15,7 +15,7 @@ const ProductGallery = ({ product }) => {
           width={800}
           height={800}
           priority
-          className="h-[500px] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+          className="h-125 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
         />
       </div>
 
