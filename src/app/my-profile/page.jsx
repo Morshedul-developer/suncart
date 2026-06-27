@@ -25,7 +25,7 @@ const MyProfile = () => {
             Please login to access your profile information.
           </p>
 
-          <Link>
+          <Link href={"/login"}>
             <Button
               size="lg"
               radius="lg"
