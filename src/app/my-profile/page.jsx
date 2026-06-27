@@ -18,7 +18,7 @@ const MyProfile = () => {
           </div>
 
           <h2 className="mt-6 text-3xl font-bold text-zinc-900">
-            You're Not Logged In
+            You are Not Logged In
           </h2>
 
           <p className="mt-3 text-zinc-500">

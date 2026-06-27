@@ -21,32 +21,42 @@ const NavBar = () => {
   const userData = authClient.useSession();
   const user = userData.data?.user;
 
+  const navLinks = user
+    ? links
+    : links.filter((link) => link.name !== "My Profile");
+
   const handleLogout = async () => {
     await authClient.signOut();
+    setOpen(false);
     router.push("/");
   };
 
   return (
-    <nav className="border-b bg-white relative">
-      <div className="max-w-7xl mx-auto flex h-16 items-center justify-between px-4">
+    <nav className="relative border-b bg-white">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         {/* Logo */}
-        <h1 className="font-bold text-[#6C4F00] text-3xl">SunCart</h1>
+        <Link
+          href="/"
+          className="text-3xl font-bold text-[#6C4F00]"
+        >
+          SunCart
+        </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex items-center gap-8">
-          {links.map((link, index) => (
-            <li key={index}>
+        <ul className="hidden items-center gap-8 md:flex">
+          {navLinks.map((link) => (
+            <li key={link.link}>
               <Link
                 href={link.link}
                 className={`relative transition duration-200
-                after:content-[''] after:absolute after:left-0 after:-bottom-1
-                after:h-0.5 after:bg-[#FBBF24]
-                after:transition-all after:duration-300
-                ${
-                  pathname === link.link
-                    ? "text-[#6C4F00] after:w-full"
-                    : "text-gray-700 hover:text-[#6C4F00] after:w-0 hover:after:w-full"
-                }`}
+                  after:absolute after:-bottom-1 after:left-0 after:h-0.5
+                  after:bg-[#FBBF24] after:transition-all after:duration-300
+                  after:content-['']
+                  ${
+                    pathname === link.link
+                      ? "text-[#6C4F00] after:w-full"
+                      : "text-gray-700 hover:text-[#6C4F00] after:w-0 hover:after:w-full"
+                  }`}
               >
                 {link.name}
               </Link>
@@ -54,102 +64,117 @@ const NavBar = () => {
           ))}
         </ul>
 
-        {/* Auth (Desktop) */}
+        {/* Desktop Auth */}
         {user ? (
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden items-center gap-3 md:flex">
             <Avatar size="sm">
               <Avatar.Image
-                alt={user?.name}
-                src={user?.image}
+                src={user.image}
+                alt={user.name}
                 referrerPolicy="no-referrer"
               />
-              <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
+              <Avatar.Fallback>
+                {user.name?.charAt(0)}
+              </Avatar.Fallback>
             </Avatar>
 
-            <Button variant="danger" size="sm" onClick={handleLogout}>
+            <Button
+              color="danger"
+              size="sm"
+              onClick={handleLogout}
+            >
               Logout
             </Button>
           </div>
         ) : (
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden items-center gap-4 md:flex">
             <Link
               href="/login"
-              className="px-4 py-2 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-100 transition"
+              className="rounded-xl border border-gray-300 px-4 py-2 text-gray-700 transition hover:bg-gray-100"
             >
               Login
             </Link>
 
             <Link
               href="/register"
-              className="px-4 py-2 rounded-xl bg-[#FBBF24] text-[#6C4F00] font-medium hover:bg-[#f5b70a] transition"
+              className="rounded-xl bg-[#FBBF24] px-4 py-2 font-medium text-[#6C4F00] transition hover:bg-[#f5b70a]"
             >
               Register
             </Link>
           </div>
         )}
 
-        {/* Mobile Button */}
-        <button className="md:hidden text-2xl" onClick={() => setOpen(!open)}>
+        {/* Mobile Menu Button */}
+        <button
+          className="text-2xl md:hidden"
+          onClick={() => setOpen(!open)}
+        >
           ☰
         </button>
       </div>
 
       {/* Mobile Menu */}
       {open && (
-        <div className="md:hidden px-4 pb-4 space-y-4 bg-white border-t">
-          {/* Links */}
+        <div className="space-y-4 border-t bg-white px-4 pb-4 md:hidden">
+          {/* Mobile Links */}
           <div className="flex flex-col items-center gap-3">
-            {links.map((link, index) => (
+            {navLinks.map((link) => (
               <Link
-                key={index}
+                key={link.link}
                 href={link.link}
                 onClick={() => setOpen(false)}
-                className={`${
+                className={
                   pathname === link.link
-                    ? "text-[#6C4F00] font-semibold"
+                    ? "font-semibold text-[#6C4F00]"
                     : "text-gray-700"
-                }`}
+                }
               >
                 {link.name}
               </Link>
             ))}
           </div>
 
-          {/* Auth Mobile */}
-          <div className="flex flex-col gap-3 pt-3 border-t">
+          {/* Mobile Auth */}
+          <div className="border-t pt-3">
             {user ? (
-              <div className="flex md:hidden justify-center items-center gap-3">
+              <div className="flex items-center justify-center gap-3">
                 <Avatar size="sm">
                   <Avatar.Image
-                    alt={user?.name}
-                    src={user?.image}
+                    src={user.image}
+                    alt={user.name}
                     referrerPolicy="no-referrer"
                   />
-                  <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
+                  <Avatar.Fallback>
+                    {user.name?.charAt(0)}
+                  </Avatar.Fallback>
                 </Avatar>
 
-                <Button variant="danger" size="sm" onClick={handleLogout}>
+                <Button
+                  color="danger"
+                  size="sm"
+                  onClick={handleLogout}
+                >
                   Logout
                 </Button>
               </div>
             ) : (
-              <>
+              <div className="flex flex-col gap-3">
                 <Link
-                  onClick={() => setOpen(false)}
                   href="/login"
-                  className="px-4 py-2 rounded-xl border border-gray-300 text-center"
+                  onClick={() => setOpen(false)}
+                  className="rounded-xl border border-gray-300 px-4 py-2 text-center"
                 >
                   Login
                 </Link>
 
                 <Link
-                  onClick={() => setOpen(false)}
                   href="/register"
-                  className="px-4 py-2 rounded-xl bg-[#FBBF24] text-[#6C4F00] text-center"
+                  onClick={() => setOpen(false)}
+                  className="rounded-xl bg-[#FBBF24] px-4 py-2 text-center text-[#6C4F00]"
                 >
                   Register
                 </Link>
-              </>
+              </div>
             )}
           </div>
         </div>
