@@ -79,7 +79,7 @@ const NavBar = () => {
             </Avatar>
 
             <Button
-              color="danger"
+              variant="danger"
               size="sm"
               onClick={handleLogout}
             >
@@ -150,7 +150,7 @@ const NavBar = () => {
                 </Avatar>
 
                 <Button
-                  color="danger"
+                  variant="danger"
                   size="sm"
                   onClick={handleLogout}
                 >
