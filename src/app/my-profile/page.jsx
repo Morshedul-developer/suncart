@@ -8,6 +8,36 @@ const MyProfile = () => {
   const userData = authClient.useSession();
   const user = userData.data?.user;
 
+  if (!user) {
+    return (
+      <div className="min-h-[70vh] flex items-center justify-center px-4">
+        <div className="w-full max-w-md rounded-3xl border border-zinc-200 bg-white p-10 text-center shadow-xl">
+          <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-zinc-100">
+            <span className="text-4xl">👤</span>
+          </div>
+
+          <h2 className="mt-6 text-3xl font-bold text-zinc-900">
+            You're Not Logged In
+          </h2>
+
+          <p className="mt-3 text-zinc-500">
+            Please login to access your profile information.
+          </p>
+
+          <Link>
+            <Button
+              size="lg"
+              radius="lg"
+              className="mt-8 w-full bg-black text-white"
+            >
+              Login Now
+            </Button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-16">
       <div className="rounded-3xl border border-zinc-200 bg-white shadow-xl p-8">
