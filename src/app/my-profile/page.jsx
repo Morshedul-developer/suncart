@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
+import { Button } from "@heroui/react";
 
 const MyProfile = () => {
   const userData = authClient.useSession();
